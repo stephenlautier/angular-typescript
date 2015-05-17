@@ -11,7 +11,13 @@ module App {
 		name = "Movies";
 		version = "1.0.0-alpha";
 		events = {
-			$stateChangeError: "todo"
+			myEvent: "example",
+			uiRouter: {
+				$stateChangeError: "$stateChangeError",
+				$stateChangeStart: "$stateChangeStart",
+				$stateChangeSuccess: "$stateChangeSuccess",
+				$stateNotFound: "$stateNotFound"
+			}
 		}
 		remoteUri = new RemoteUriConfig();
 	}
@@ -26,10 +32,9 @@ module App {
 
 	app.constant(Config.id, new Config())
 
-	app.config(() => {
+	app.config((
 
-
+		) => {
 
 	});
-
 }

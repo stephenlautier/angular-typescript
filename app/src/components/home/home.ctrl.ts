@@ -15,11 +15,7 @@ module App {
 			) {
 			
 			this._logger = loggerFactory(HomeController.id);
-			this._logger.info("ctor", "init", {hello: "yo", config: config});
-						
-			//var logger = loggerFactory.get(HomeController.id)
-			//logger.error("source", "message"?, { data });
-			
+			this._logger.info("ctor", "init", {hello: "yo", config: config});			
 		}
 		
 		title = "mr!";
@@ -41,7 +37,7 @@ module App {
 		}
 	}
 
-	angular.module(App.Module)
+	angular.module(Module)
 		.controller(HomeController.id, HomeController);
 
 }
