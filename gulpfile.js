@@ -9,11 +9,12 @@ var ngAnnotate = require("gulp-ng-annotate");
 
 var paths = {
 	tscripts: {
-		src: ["typings/tsd.d.ts", "app/src/app.consts.ts", "app/src/app.ts", "app/src/**/*.ts"],
+		src: ["typings/tsd.d.ts", "app/app.consts.ts", "app/app.ts", "app/**/*.ts"],
 		dest: "app/build"
 	},
-	html: ["app/src/**/*.html", "app/index.html"],
-	style: "app/assets/**/*.css",
+	html: ["app/**/*.html"],
+	style: "assets/styles/**/*.css",
+	dist: "./build"
 };
 
 gulp.task("default", function () {
@@ -62,15 +63,14 @@ gulp.task("compile:typescript", function () {
 });
 
 gulp.task("html", function () {
-	gulp.src(["app/src/**/*.html", "!app/src/index.html"])
-		.pipe(gulp.dest("app/build"));
-
+	gulp.src(["app/**/*.html", "!app/index.html"])
+		.pipe(gulp.dest(paths.dist));
 });
 
 gulp.task("bower", function () {
-	gulp.src("./app/src/index.html")
-		.pipe(wiredep({}))
-		.pipe(gulp.dest("./app/build"));
+	gulp.src("app/index.html")
+		.pipe(wiredep())
+		.pipe(gulp.dest(paths.dist));
 });
 
 gulp.task("serve", ["build"], function (done) {
@@ -79,7 +79,7 @@ gulp.task("serve", ["build"], function (done) {
 		open: false,
 		port: 9000,
 		server: {
-			baseDir: ["./app/build"],
+			baseDir: [paths.dist],
 			middleware: function (req, res, next) {
 				res.setHeader("Access-Control-Allow-Origin", "*");
 				next();

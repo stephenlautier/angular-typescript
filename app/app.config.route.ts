@@ -14,14 +14,14 @@ module App {
 			$stateProvider.state("shell", {
 				url: "/",
 				abstract: true,
-				templateUrl: "components/shell/shell.html",
+				templateUrl: "areas/shell/shell.html",
 				controller: ShellController.id,
 				controllerAs: defaultControllerAs,
 			});
 			
 			$stateProvider.state("shell.home", {
 				url: "",
-				templateUrl: "components/home/home.html",
+				templateUrl: "areas/home/home.html",
 				controller: HomeController.id,
 				controllerAs: defaultControllerAs,
 //				resolve: {
@@ -33,7 +33,7 @@ module App {
 			
 			$stateProvider.state("error", {
 				url: "/error",
-				templateUrl: "components/error/error.html",
+				templateUrl: "areas/error/error.html",
 				controller: ErrorController.id,
 				controllerAs: defaultControllerAs
 			});
