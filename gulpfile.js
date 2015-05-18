@@ -45,7 +45,9 @@ gulp.task("watch", ["serve"], function () {
 });
 
 // ** Compilation ** //
-
+gulp.task("build:prod", ["build"], function(cb){
+	runseq("minify", cb);
+});
 gulp.task("build", ["compile:typescript", "bower", "html"]);
 gulp.task("compile:typescript", function () {
 	var tsResult = gulp
