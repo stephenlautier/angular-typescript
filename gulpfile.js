@@ -6,13 +6,16 @@ var runseq = require("run-sequence");
 var concat = require("gulp-concat");
 var wiredep = require("wiredep").stream;
 var ngAnnotate = require("gulp-ng-annotate");
+var usemin = require("gulp-usemin");
+var uglify = require("gulp-uglify");
+var minifyCss = require("gulp-minify-css");
 
 var paths = {
 	tscripts: {
 		src: ["typings/tsd.d.ts", "app/app.consts.ts", "app/app.ts", "app/**/*.ts"],
 		dest: "app/build"
 	},
-	html: ["app/**/*.html"],
+	html: ["app/**/*.html", "index.html"],
 	style: "assets/styles/**/*.css",
 	dist: "./build"
 };
@@ -58,17 +61,27 @@ gulp.task("compile:typescript", function () {
 		.pipe(concat("app.js"))
 		.pipe(ngAnnotate())
 		.pipe(sourcemaps.write("."))
-		.pipe(gulp.dest(paths.tscripts.dest));
+		.pipe(gulp.dest("./build/scripts"));
 
 });
 
 gulp.task("html", function () {
-	gulp.src(["app/**/*.html", "!app/index.html"])
+	gulp.src(["app/**/*.html"])
 		.pipe(gulp.dest(paths.dist));
 });
 
+gulp.task("minify", function(){
+	return gulp.src("build/index.html")
+		.pipe(usemin({
+			assetsDir: "build",
+			css: [minifyCss(), "concat"],
+			js: [uglify(), "concat"]
+		}))
+		.pipe(gulp.dest("build"));
+});
+
 gulp.task("bower", function () {
-	gulp.src("app/index.html")
+	gulp.src("index.html")
 		.pipe(wiredep())
 		.pipe(gulp.dest(paths.dist));
 });
