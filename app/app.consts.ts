@@ -1,5 +1,5 @@
 module App{
 	
-	export var Module = "movies-app";
+	export var Module = "heroes-app";
 	
 } 

@@ -14,8 +14,8 @@ module App {
 			$stateProvider.state("shell", {
 				url: "/",
 				abstract: true,
-				templateUrl: "areas/shell/shell.html",
-				controller: ShellController.id,
+				templateUrl: "areas/layout/layout.html",
+				controller: LayoutController.id,
 				controllerAs: defaultControllerAs,
 			});
 			

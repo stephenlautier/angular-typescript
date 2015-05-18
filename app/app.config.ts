@@ -8,7 +8,7 @@ module App {
 
 		}
 
-		name = "Movies";
+		name = "Heroes";
 		version = "1.0.0-alpha";
 		events = {
 			myEvent: "example",
@@ -33,8 +33,18 @@ module App {
     app.constant(Config.id, new Config());
 
 	app.config((
-
+		$logProvider: ng.ILogProvider,
+		$locationProvider: ng.ILocationProvider
 		) => {
 
+		// turn debugging off/on (no info or warn)
+		if ($logProvider.debugEnabled) {
+			$logProvider.debugEnabled(true);
+		}
+
+//		// remove the hash tag
+//		$locationProvider.html5Mode({
+//			enabled: true
+//		});
 	});
 }
