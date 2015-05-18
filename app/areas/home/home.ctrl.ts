@@ -33,7 +33,7 @@ module App {
 		
 		getLanguage() {
 			var lang = this.translationService.language;
-			alert(`Current language ${lang}`)
+			alert(`Current language ${lang}`);
 		}
 	}
 

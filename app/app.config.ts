@@ -30,7 +30,7 @@ module App {
 		}
 	}
 
-	app.constant(Config.id, new Config())
+    app.constant(Config.id, new Config());
 
 	app.config((
 
