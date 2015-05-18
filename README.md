@@ -3,6 +3,10 @@ Sample application using Angular 1.x with Typescript, Gulp and bower.
 
 ## Its still work in progress!
 There are several stuff which needs to be worked on, so until its ready please bare with me.
+### Tasks to do
+ - implement work flow for SCSS
+ - make it look a little bit sexy
+ - make a more polished sample with some data, navigation etc...
 
 ## Getting started
 - Make sure you have NodeJS, Bower and git installed.
