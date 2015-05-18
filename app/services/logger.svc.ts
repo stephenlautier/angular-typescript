@@ -1,6 +1,7 @@
 module App {
 
 	const enum LogType {
+		Debug,
 		Info,
 		Warning,
 		Error,
@@ -8,10 +9,10 @@ module App {
 	}
 
 	export interface ILog {
-
+		debug(source: string, message?: string, data?: any): void;g
 		info(source: string, message?: string, data?: any): void;
 		error(source: string, message?: string, data?: any): void;
-		warning(source: string, message?: string, data?: any): void;
+		warn(source: string, message?: string, data?: any): void;
 	}
 
 	export interface ILoggerService {
@@ -23,30 +24,40 @@ module App {
 	export class LoggerService implements ILoggerService {
 		static id = "loggerService";
 		
-		constructor() {
+		/*@ngInject*/
+		constructor(private $log: ng.ILogService) {
 
 		}
 
 		log(logType: LogType, message: string, data?: any) {
 			switch (logType) {
+				
+				case LogType.Debug:
+					//console.debug(message, data);
+					this.$log.debug(message, data);
+					break;
 				case LogType.Info:
-					console.info(message, data);
+					//console.info(message, data);
+					this.$log.info(message, data);
 					break;
 				case LogType.Error:
-					console.error(message, data);
+					//console.error(message, data);
+					this.$log.error(message, data);
 					break;
 				case LogType.Warning:
-					console.warn(message, data);
+					//console.warn(message, data);
+					this.$log.warn(message, data);					
 					break;
-				default:
-					console.log(message, data);
+				default:					
+					//console.log(message, data);
+					this.$log.log(message, data);
 					break;
 			}
 		}
 	}
 
 	export class Logger implements ILog {
-		
+
 		constructor(
 			private sourceId: string,
 			private loggerService: ILoggerService
@@ -54,15 +65,19 @@ module App {
 
 		}
 
-		info(source: string, message?: string, data?: any) {					
-			this._log(this.sourceId, source, LogType.Info, message, data);
+		debug(source: string, message?: string, data?: any) {
+			this._log(this.sourceId, source, LogType.Debug, message, data);		
+		}		
+
+		info(source: string, message?: string, data?: any) {
+			this._log(this.sourceId, source, LogType.Info, message, data);		
 		}
 
 		error(source: string, message?: string, data?: any) {
 			this._log(this.sourceId, source, LogType.Error, message, data);
 		}
-			
-		warning(source: string, message?: string, data?: any) {
+
+		warn(source: string, message?: string, data?: any) {
 			this._log(this.sourceId, source, LogType.Warning, message, data);
 		}
 

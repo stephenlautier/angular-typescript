@@ -17,6 +17,7 @@ var paths = {
 		dest: "app/build"
 	},
 	html: ["app/**/*.html", "index.html"],
+	mainHtml: "index.html",
 	style: "assets/styles/**/*.css",
 	dist: "./build"
 };
@@ -39,6 +40,7 @@ gulp.task("default", function () {
 gulp.task("watch", ["serve"], function () {
 	gulp.watch(paths.tscripts.src, ["compile:typescript", browserSync.reload]).on("change", reportChange);
 	gulp.watch(paths.html, ["html", browserSync.reload]).on("change", reportChange);
+	gulp.watch(paths.mainHtml, ["bower", browserSync.reload]).on("change", reportChange);
 	gulp.watch(paths.style, [browserSync.reload]).on("change", reportChange);
 });
 
@@ -82,7 +84,7 @@ gulp.task("minify", function(){
 });
 
 gulp.task("bower", function () {
-	gulp.src("index.html")
+	gulp.src(paths.mainHtml)
 		.pipe(wiredep())
 		.pipe(gulp.dest(paths.dist));
 });

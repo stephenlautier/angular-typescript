@@ -16,6 +16,7 @@ module App {
 			
 			this._logger = loggerFactory(HomeController.id);
 			this._logger.info("ctor", "init", {hello: "yo", config: config});			
+			this._logger.debug("ctor", "init debug", {hello: "yo", config: config});
 		}
 		
 		title = "mr!";
@@ -23,7 +24,7 @@ module App {
 
 		doSomething() {
 			alert("yay!");
-			this._logger.warning("doSomething", "yay!");
+			this._logger.warn("doSomething", "yay!");
 		}
 
 		setLanguage() {
