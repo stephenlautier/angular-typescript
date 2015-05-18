@@ -9,6 +9,7 @@ var ngAnnotate = require("gulp-ng-annotate");
 var usemin = require("gulp-usemin");
 var uglify = require("gulp-uglify");
 var minifyCss = require("gulp-minify-css");
+var del = require("del");
 
 var paths = {
 	tscripts: {
@@ -85,6 +86,14 @@ gulp.task("bower", function () {
 		.pipe(wiredep())
 		.pipe(gulp.dest(paths.dist));
 });
+
+// ** Clean ** //
+gulp.task("clean", function(cb){	
+	del([paths.dist], cb);	
+});
+
+
+// ** Utils ** //
 
 gulp.task("serve", ["build"], function (done) {
 
