@@ -21,6 +21,6 @@
     "wiredep": "^2.2.2"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp build"
   }
 }
