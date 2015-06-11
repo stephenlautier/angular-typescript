@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var tsc = require("gulp-typescript");
+var sass = require("gulp-sass");
 var sourcemaps = require("gulp-sourcemaps");
 var browserSync = require("browser-sync");
 var runseq = require("run-sequence");
@@ -18,7 +19,10 @@ var paths = {
 	},
 	html: ["app/**/*.html", "index.html"],
 	mainHtml: "index.html",
-	style: "assets/styles/**/*.css",
+	sass: {
+		src: ["assets/styles/**/*.scss"],
+		dest: "./build/styles"
+	},
 	dist: "./build"
 };
 
@@ -41,14 +45,14 @@ gulp.task("watch", ["serve"], function () {
 	gulp.watch(paths.tscripts.src, ["compile:typescript", browserSync.reload]).on("change", reportChange);
 	gulp.watch(paths.html, ["html", browserSync.reload]).on("change", reportChange);
 	gulp.watch(paths.mainHtml, ["bower", browserSync.reload]).on("change", reportChange);
-	gulp.watch(paths.style, [browserSync.reload]).on("change", reportChange);
+	gulp.watch(paths.sass.src, ["compile:sass", browserSync.reload]).on("change", reportChange);
 });
 
 // ** Compilation ** //
 gulp.task("build:prod", ["build"], function(cb){
 	runseq("minify", cb);
 });
-gulp.task("build", ["compile:typescript", "bower", "html"]);
+gulp.task("build", ["compile:typescript", "compile:sass", "bower", "html"]);
 gulp.task("compile:typescript", function () {
 	var tsResult = gulp
 		.src(paths.tscripts.src)
@@ -68,6 +72,14 @@ gulp.task("compile:typescript", function () {
 		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest("./build/scripts"));
 
+});
+
+gulp.task("compile:sass", function () {
+	gulp.src(paths.sass.src)
+		.pipe(sourcemaps.init())
+		.pipe(sass())
+		.pipe(sourcemaps.write("."))
+		.pipe(gulp.dest(paths.sass.dest));
 });
 
 gulp.task("html", function () {
