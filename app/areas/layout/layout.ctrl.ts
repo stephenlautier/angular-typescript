@@ -3,20 +3,29 @@ module App {
 
 	export class LayoutController {
 		static id = "layoutController";
-		
+
 		private _logger: ILog;
+
+		get appTitle() {
+			return this.config.name;
+		}
+
+		get appVersion() {
+			return this.config.version;
+		}
 					
-		/*@ngInject*/	
-		constructor(			
+		/*@ngInject*/
+		constructor(
 			private loggerFactory: ILoggerFactory,
-			private notificationService: INotificationService
+			private notificationService: INotificationService,
+			private config: Config
 			) {
-			
+
 			this._logger = loggerFactory(LayoutController.id);
 			this._logger.info("ctor", "init");
-			this.unreadNotificationsCount = this.notificationService.getUnreadCount();			
+			this.unreadNotificationsCount = this.notificationService.getUnreadCount();
 		}
-		
+
 		unreadNotificationsCount: number = 0;
 	}
 

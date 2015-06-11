@@ -31,7 +31,7 @@ module App {
 
 		log(logType: LogType, message: string, data?: any) {
 			switch (logType) {
-				
+
 				case LogType.Debug:
 					//console.debug(message, data);
 					this.$log.debug(message, data);
@@ -46,7 +46,7 @@ module App {
 					break;
 				case LogType.Warning:
 					//console.warn(message, data);
-					this.$log.warn(message, data);					
+					this.$log.warn(message, data);
 					break;
 				default:					
 					//console.log(message, data);
@@ -66,11 +66,11 @@ module App {
 		}
 
 		debug(source: string, message?: string, data?: any) {
-			this._log(this.sourceId, source, LogType.Debug, message, data);		
-		}		
+			this._log(this.sourceId, source, LogType.Debug, message, data);
+		}
 
 		info(source: string, message?: string, data?: any) {
-			this._log(this.sourceId, source, LogType.Info, message, data);		
+			this._log(this.sourceId, source, LogType.Info, message, data);
 		}
 
 		error(source: string, message?: string, data?: any) {
@@ -96,9 +96,9 @@ module App {
 		.service(LoggerService.id, LoggerService)
 		.factory("loggerFactory", (loggerService) => {
 
-		return (sourceId): ILog => {
-			return new Logger(sourceId, loggerService);
-		};
+			return (sourceId): ILog => {
+				return new Logger(sourceId, loggerService);
+			};
 
-	});
+		});
 }

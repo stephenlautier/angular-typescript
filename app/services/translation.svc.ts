@@ -7,16 +7,16 @@ module App {
 
 	class TranslationService implements ITranslationService {
 		static id = "translationService";
-		
+
 		constructor() {
 
 		}
-		
+
 		private _language: string;
-		get language(){
+		get language() {
 			return this._language;
-		}		
-		set language(language: string){
+		}
+		set language(language: string) {
 			this._language = language;
 		}
 

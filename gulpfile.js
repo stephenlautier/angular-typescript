@@ -99,7 +99,7 @@ gulp.task("clean", function(cb){
 
 // ** Utils ** //
 
-gulp.task("serve", ["build"], function (done) {
+gulp.task("serve", ["build:prod"], function (done) {
 
 	browserSync({
 		open: false,

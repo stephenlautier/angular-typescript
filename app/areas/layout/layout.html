@@ -1,16 +1,36 @@
 <section>
-	<h1>Heroes</h1>
-	<nav>
-		<ul>
-			<li><a ui-sref="shell.home">Home</a></li>
-			<li><a ui-sref="heroes">Heroes</a></li>
-			<li>messages (<span>{{vm.unreadNotificationsCount}}</span>)</li>				
-		</ul>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">{{ vm.appTitle }} <small>{{ vm.appVersion }}</small></a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a ui-sref="heroes">Heroes</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-right">
+					<li>
+						<a href="#">Notifications <span class="badge">{{vm.unreadNotificationsCount}}</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</nav>
-	<section>
+	<section class="container">
 		<ui-view />
 	</section>
-	<footer>
-		footer goes here...
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">&copy; Stephen Lautier 2015.</p>
+		</div>
 	</footer>
 </section>
