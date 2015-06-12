@@ -9,15 +9,21 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">{{ vm.appTitle }} <small>{{ vm.appVersion }}</small></a>
+				<a class="navbar-brand" ui-sref="shell.home">{{ vm.appTitle }} <small>{{ vm.appVersion }}</small></a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li>
-						<a ui-sref="heroes">Heroes</a>
+						<a ui-sref="shell.basicform">Basic Form Example</a>
 					</li>
 				</ul>
-				<ul class="nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-show="vm.user" class="user-profile">
+						<a href="#">
+						<img class="img-circle" width="30" src="https://avatars3.githubusercontent.com/u/3908723?v=3&s=30"  alt="user profile">
+						<span class="hidden-xs">{{ vm.user }}</span>
+						</a>
+					</li>
 					<li>
 						<a href="#">Notifications <span class="badge">{{vm.unreadNotificationsCount}}</span></a>
 					</li>

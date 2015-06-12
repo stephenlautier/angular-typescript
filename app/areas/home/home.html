@@ -1,9 +1,12 @@
 <section>
 	<div class="page-header">
-		<h1>Hello {{vm.title}}!</h1>
+		<h1>{{vm.title | uppercase}}</h1>
 	</div>
-	<button ng-click="vm.doSomething()">do something!</button>
-	<input type="text" placeholder="enter language" ng-model="vm.language">
-	<button ng-click="vm.setLanguage()">set language!</button>
-	<button ng-click="vm.getLanguage()">get language!</button>
+	
+	<div class="heroes" ng-repeat="hero in vm.heroes">
+		<div class="hero">
+			<h2><a ui-sref="shell.hero({hero: hero.key})">{{ hero.title }}</a></h2>
+			[{{ hero.role }}] {{ hero.caption | uppercase}}
+		</div>
+	</div>	
 </section>

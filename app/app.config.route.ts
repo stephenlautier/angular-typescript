@@ -31,6 +31,20 @@ module App {
 //				}
 			});
 			
+			$stateProvider.state("shell.hero", {
+				url: "hero/:hero",
+				templateUrl: "areas/hero/hero.html",
+				controller: HeroController.id,
+				controllerAs: defaultControllerAs
+			});
+			
+			$stateProvider.state("shell.basicform", {
+				url: "basic-form",
+				templateUrl: "areas/basic-form/basic-form.html",
+				controller: BasicFormController.id,
+				controllerAs: defaultControllerAs
+			});
+			
 			$stateProvider.state("error", {
 				url: "/error",
 				templateUrl: "areas/error/error.html",

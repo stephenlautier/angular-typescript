@@ -11,31 +11,17 @@ module App {
 		constructor(
 			private translationService: ITranslationService,
 			private loggerFactory: ILoggerFactory,
-			private config: Config
+			private config: Config,
+			private heroService: IHeroService
 			) {
 
 			this._logger = loggerFactory(HomeController.id);
-			this._logger.info("ctor", "init", { hello: "yo", config: config });
-			this._logger.debug("ctor", "init debug", { hello: "yo", config: config });
+			this.heroes = heroService.getAll();
 		}
 
-		title = "mr!";
+		title = "Top Heroes";
+		heroes: Hero[];
 		language: string;
-
-		doSomething() {
-			alert("yay!");
-			this._logger.warn("doSomething", "yay!");
-		}
-
-		setLanguage() {
-			this.translationService.language = this.language;
-			this._logger.info("setLanguage", "setting language...", { language: this.language });
-		}
-
-		getLanguage() {
-			var lang = this.translationService.language;
-			alert(`Current language ${lang}`);
-		}
 	}
 
 	angular.module(Module)

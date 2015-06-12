@@ -13,6 +13,9 @@
     },
     "angular-ui-router/angular-ui-router.d.ts": {
       "commit": "066819c65ff561ca109955e0b725c253e243f0a2"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "066819c65ff561ca109955e0b725c253e243f0a2"
     }
   }
 }

@@ -23,6 +23,10 @@ var paths = {
 		src: ["assets/styles/**/*.scss"],
 		dest: "./build/styles"
 	},
+	fonts: {
+		src: ["bower_components/bootstrap/fonts/*.{eot,svg,ttf,woff,woff2}"],
+		dest: "./build/fonts"
+	},
 	dist: "./build"
 };
 
@@ -49,10 +53,10 @@ gulp.task("watch", ["serve"], function () {
 });
 
 // ** Compilation ** //
-gulp.task("build:prod", ["build"], function(cb){
+gulp.task("build:prod", ["build"], function (cb) {
 	runseq("minify", cb);
 });
-gulp.task("build", ["compile:typescript", "compile:sass", "bower", "html"]);
+gulp.task("build", ["compile:typescript", "compile:sass", "bower", "html", "copy:fonts"]);
 gulp.task("compile:typescript", function () {
 	var tsResult = gulp
 		.src(paths.tscripts.src)
@@ -87,13 +91,13 @@ gulp.task("html", function () {
 		.pipe(gulp.dest(paths.dist));
 });
 
-gulp.task("minify", function(){
+gulp.task("minify", function () {
 	return gulp.src("build/index.html")
 		.pipe(usemin({
-			assetsDir: "build",
-			css: [minifyCss(), "concat"],
-			js: [uglify(), "concat"]
-		}))
+		assetsDir: "build",
+		css: [minifyCss(), "concat"],
+		js: [uglify(), "concat"]
+	}))
 		.pipe(gulp.dest("build"));
 });
 
@@ -103,9 +107,14 @@ gulp.task("bower", function () {
 		.pipe(gulp.dest(paths.dist));
 });
 
+gulp.task("copy:fonts", function () {
+	gulp.src(paths.fonts.src)
+		.pipe(gulp.dest(paths.fonts.dest));
+});
+
 // ** Clean ** //
-gulp.task("clean", function(cb){	
-	del([paths.dist], cb);	
+gulp.task("clean", function (cb) {
+	del([paths.dist], cb);
 });
 
 
