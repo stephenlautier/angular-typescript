@@ -1,14 +1,21 @@
 # angular-typescript
 Sample application using Angular 1.x with Typescript, Gulp and bower.
 
-For fun I used Visual Studio Code as the code editor. [Visual Studio Code](https://code.visualstudio.com/).
+For fun I used [Visual Studio Code](https://code.visualstudio.com/), as the code editor.
 
 ## Features
  - Gulp example
+ - Bower as Package Manager
  - TypeScript Workflow
  - SASS Workflow
- - AngularJS with TypeScript inc. basic navigation, services etc...
- - Using Bower
+ - Sourcemaps for both SASS/TypeScript working
+ - AngularJS with TypeScript inc.
+ -- UI Routing
+ -- Basic Navigation
+ -- All out TypeScript (not hybrid)
+ -- ngAnnotate (for auto-injection)
+ -- Logger
+ 
  
 ## Getting started
 - From the project folder execute
