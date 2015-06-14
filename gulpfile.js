@@ -27,6 +27,10 @@ var paths = {
 		src: ["bower_components/bootstrap/fonts/*.{eot,svg,ttf,woff,woff2}"],
 		dest: "./build/fonts"
 	},
+	imgs: {
+		src: ["assets/imgs/*.{png,jpeg,jpg}"],
+		dest: "./build/imgs"
+	},
 	dist: "./build"
 };
 
@@ -56,7 +60,7 @@ gulp.task("watch", ["serve"], function () {
 gulp.task("build:prod", ["build"], function (cb) {
 	runseq("minify", cb);
 });
-gulp.task("build", ["compile:typescript", "compile:sass", "bower", "html", "copy:fonts"]);
+gulp.task("build", ["compile:typescript", "compile:sass", "bower", "html", "copy:fonts", "copy:imgs"]);
 gulp.task("compile:typescript", function () {
 	var tsResult = gulp
 		.src(paths.tscripts.src)
@@ -110,6 +114,11 @@ gulp.task("bower", function () {
 gulp.task("copy:fonts", function () {
 	gulp.src(paths.fonts.src)
 		.pipe(gulp.dest(paths.fonts.dest));
+});
+
+gulp.task("copy:imgs", function () {
+	gulp.src(paths.imgs.src)
+		.pipe(gulp.dest(paths.imgs.dest));
 });
 
 // ** Clean ** //
