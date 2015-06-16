@@ -10,11 +10,11 @@ For fun I used [Visual Studio Code](https://code.visualstudio.com/), as the code
  - SASS Workflow
  - Sourcemaps for both SASS/TypeScript working
  - AngularJS with TypeScript inc.
- -- UI Routing
- -- Basic Navigation
- -- All out TypeScript (not hybrid)
- -- ngAnnotate (for auto-injection)
- -- Logger
+  - UI Routing
+  - Basic Navigation
+  - All out TypeScript (not hybrid)
+  - ngAnnotate (for auto-injection)
+  - Logger
  
  
 ## Getting started
