@@ -45,6 +45,13 @@ module App {
 				controllerAs: defaultControllerAs
 			});
 			
+			$stateProvider.state("shell.command-lab", {
+				url: "command-lab",
+				templateUrl: "areas/labs/command-lab.html",
+				controller: CommandLabController.id,
+				controllerAs: defaultControllerAs
+			});
+			
 			$stateProvider.state("error", {
 				url: "/error",
 				templateUrl: "areas/error/error.html",

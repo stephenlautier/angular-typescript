@@ -1,0 +1,30 @@
+<section>
+	<div class="page-header">
+		<h1>{{vm.title | uppercase}}</h1>
+	</div>
+	<form>
+		<div class="form-group">
+			<label for="alias">Alias</label>
+			<input type="text" class="form-control" id="alias" placeholder="Enter Alias" ng-model="vm.alias">
+		</div>
+		<button type="submit" class="btn btn-default"  ng-disabled="vm.isExecuting" ng-click="vm.saveCmd()">Save executing only</button>
+		<button type="submit" class="btn btn-default" ng-click="vm.isBusy = !vm.isBusy">Toggle Busy</button>
+		<button type="submit" class="btn btn-default"  ng-disabled="!vm.isEnabled" ng-click="vm.saveCmd()">Save Enabled</button>
+		
+		<h2>Status</h2>
+		<div class="form-group">
+			<label>isExecuting</label>
+			{{ vm.isExecuting }}
+		</div>
+		<div class="form-group">
+			<label>vm.isBusy</label>
+			{{ vm.isBusy }}
+		</div>
+		</div>
+		<div class="form-group">
+			<label>vm.isEnabled</label>
+			{{ vm.isEnabled }}
+		</div>
+		
+	</form>
+</section>
