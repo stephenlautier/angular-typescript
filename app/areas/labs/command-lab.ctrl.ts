@@ -1,12 +1,13 @@
 module App {
 	'use strict';
 
-	//TODO: implement commandFactory + commandDirective? 
+	//TODO: implement commandDirective? 
 
 	export class CommandLabController {
 		static id = "commandLabController";
 
 		private _logger: ILog;
+			
 			
 		/*@ngInject*/
 		constructor(
@@ -14,13 +15,17 @@ module App {
 			private loggerFactory: ILoggerFactory,
 			private config: Config,
 			private userInfo: IUserInfo,
-			private $timeout: angular.ITimeoutService
+			private $timeout: angular.ITimeoutService,
+			private commandFactory: ICommandFactory
 			) {
 
 			this._logger = loggerFactory(CommandLabController.id);
 			this._logger.info("ctor", "init", { hello: "yo", config: config });
 			this._logger.debug("ctor", "init debug", { hello: "yo", config: config });
 
+			// destroy
+			this.destroyCmd = commandFactory($scope, () => this.save(), () => !this.isBusy);
+			this.destroyCmd2 = commandFactory($scope, () => this.save(), () => !this.isBusy);
 
 			// command specific
 			this.execute = this.save;
@@ -50,6 +55,10 @@ module App {
 		canExecute: () => boolean;
 		execute: () => angular.IPromise<any>;
 		isEnabled = true;
+		
+		destroyCmd: ICommand;
+		destroyCmd2: ICommand;
+		
 
 		private handleExecute() {
 
@@ -72,6 +81,7 @@ module App {
 		saveCmd() {
 			this.handleExecute();
 		}
+		
 
 		save() {
 			this._logger.info("save", "init!");
