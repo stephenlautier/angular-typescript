@@ -22,7 +22,8 @@
     "angular-bootstrap": "~0.13.0",
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.4",
-    "lodash": "~3.9.3"
+    "lodash": "~3.9.3",
+    "ng-command": "~0.2.0"
   },
   "resolutions": {
     "angular": "~1.4.0"

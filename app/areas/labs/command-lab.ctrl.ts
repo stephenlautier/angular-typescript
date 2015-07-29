@@ -1,5 +1,6 @@
 module App {
 	'use strict';
+	import ICommand = ngCommand.ICommand;
 
 	//TODO: implement commandDirective? 
 
@@ -16,7 +17,7 @@ module App {
 			private config: Config,
 			private userInfo: IUserInfo,
 			private $timeout: angular.ITimeoutService,
-			private commandFactory: ICommandFactory
+			private $command: ngCommand.ICommandFactory
 			) {
 
 			this._logger = loggerFactory(CommandLabController.id);
@@ -24,8 +25,8 @@ module App {
 			this._logger.debug("ctor", "init debug", { hello: "yo", config: config });
 
 			// destroy
-			this.destroyCmd = commandFactory($scope, () => this.save(), () => !this.isBusy);
-			this.destroyCmd2 = commandFactory($scope, () => this.save(), () => !this.isBusy);
+			this.destroyCmd = $command($scope, () => this.save(), () => !this.isBusy);
+			this.destroyCmd2 = $command($scope, () => this.save(), () => !this.isBusy);
 
 			// command specific
 			this.execute = this.save;

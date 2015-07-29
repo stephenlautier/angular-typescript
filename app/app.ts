@@ -6,7 +6,8 @@ module App {
 		"ngTouch",
 		"ngSanitize",
 		"ui.router",
-		"ui.bootstrap"
+		"ui.bootstrap",
+		ngCommand.ModuleName
 	]);
 
 	app.run((
